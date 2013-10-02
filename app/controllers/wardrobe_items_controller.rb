@@ -13,6 +13,18 @@ class WardrobeItemsController < ApplicationController
   end
 
   def new
-    @wardrobe_item = WardrobeItem.new
+    @wardrobe_item = WardrobeItem.create
+  end
+
+  def create
+    @wardrobe_item = WardrobeItem.create(wardrobe_item_params)
+
+    redirect_to @wardrobe_item
+  end
+
+  private
+
+  def wardrobe_item_params
+    params.require(:wardrobe_item).permit(:garment, :label, :season, :color)
   end
 end
