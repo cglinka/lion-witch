@@ -26,12 +26,17 @@ class WardrobeItemsController < ApplicationController
     end
   end
 
+  def edit
+    @wardrobe_item = WardrobeItem.find(params[:id])
+  end
+
+  def update
+    @wardrobe_item = WardrobeItem.find(params[:id])
+  end
+
   private
 
   def wardrobe_item_params
     params.require(:wardrobe_item).permit(:garment, :label, :season, :color)
-  end
-
-  def edit
   end
 end
