@@ -40,6 +40,13 @@ class WardrobeItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @wardrobe_item = WardrobeItem.find(params[:id])
+    @wardrobe_item.destroy
+
+    redirect_to wardrobe_items_path
+  end
+
   private
 
   def wardrobe_item_params
