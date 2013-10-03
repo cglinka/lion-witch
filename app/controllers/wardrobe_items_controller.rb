@@ -27,8 +27,11 @@ class WardrobeItemsController < ApplicationController
   end
 
   private
-  
+
   def wardrobe_item_params
     params.require(:wardrobe_item).permit(:garment, :label, :season, :color)
+  end
+
+  def edit
   end
 end
