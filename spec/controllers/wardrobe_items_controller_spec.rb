@@ -106,7 +106,17 @@ describe WardrobeItemsController do
 
         put :update, { :id => wardrobe_item, :wardrobe_item => { 
           "garment" => "invalid value"}}
-        expect(assigns(:wardrobe_item)).to eq(wardrobe_item2)
+        expect(assigns(:wardrobe_item)).to eq(wardrobe_item)
+      end
+
+      it "re-renders the 'edit' template" do
+        wardrobe_item = WardrobeItem.create valid_attributes
+
+        allow_any_instance_of(WardrobeItem).to receive(:save).and_return(false)
+
+        put :update, {:id => wardrobe_item, :wardrobe_item => { 
+          "garment" => "invalid value"}}
+        expect(response).to render_template("edit")
       end
     end
   end
