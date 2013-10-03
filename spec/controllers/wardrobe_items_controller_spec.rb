@@ -124,12 +124,17 @@ describe WardrobeItemsController do
   describe 'DELETE destroy' do
     it 'destroys the requested wardrobe item' do
       wardrobe_item = WardrobeItem.create valid_attributes
-      
+
       expect {
         delete :destroy, { :id => wardrobe_item }
       }.to change(WardrobeItem, :count).by(-1)
     end
 
-    it 'redirects to the wardrobe item list'
+    it 'redirects to the wardrobe item list' do
+      wardrobe_item = WardrobeItem.create valid_attributes
+      delete :destroy, { :id => wardrobe_item }
+
+      expect(response).to redirect_to(wardrobe_items_url)
+    end
   end
 end
